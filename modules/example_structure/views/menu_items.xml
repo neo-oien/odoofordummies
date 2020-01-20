@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <menuitem name="Parent menu"
+              id="parent_menu_id"
+              groups=""
+              sequence="10"/>
+
+    <menuitem name="Menu item"
+              id="menu_item_id"
+              parent="parent_menu_id"
+              action="action_example_object_view"
+              groups=""
+              sequence="10"/>
+
+</odoo>

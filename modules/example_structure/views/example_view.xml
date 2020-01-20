@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="example_object_form_view" model="ir.ui.view">
+        <field name="name">Object form view</field>
+        <field name="model">module.example_object</field>
+        <field name="arch" type="xml">
+            <form string="Object">
+                <sheet>
+                    <group col="8">
+                        <group col="2" colspan="2">
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="example_object_tree_view" model="ir.ui.view">
+        <field name="name">Object tree view</field>
+        <field name="model">module.example_object</field>
+        <field name="arch" type="xml">
+            <tree string="Object list">
+                <field name="display_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="example_object_search_view" model="ir.ui.view">
+        <field name="name">Object search view</field>
+        <field name="model">module.example_object</field>
+        <field name="arch" type="xml">
+            <search string="Object search">
+                <group>
+                    <field name="display_name"/>
+                    <field name="name"/>
+                </group>
+                <group string="Group by">
+                    <filter name="group_by_parent_id" string="Parent category" context="{'group_by':'name'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_example_object_view" model="ir.actions.act_window">
+        <field name="name">Budget categories</field>
+        <field name="res_model">module.example_object</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="example_object_tree_view"/>
+        <field name="search_view_id" ref="example_object_search_view"/>
+        <field name="domain">[('name', '!=', '')]</field>
+    </record>
+
+</odoo>

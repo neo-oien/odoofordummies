@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+base_access_name_of_the_model,base access to name_of_the_model,model_name_of_the_model,base.group_user,1,0,0,0
+manager_access_name_of_the_model,manager access to name_of_the_model,model_name_of_the_model,example_structure.new_group_id,1,1,1,1
