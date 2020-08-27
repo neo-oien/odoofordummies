@@ -1,0 +1,65 @@
+1.0 Odoo introduction
+=====================
+
+Estructura Odoo
+---------------
+
+Estructura POO (programación orientada a objetos):
+
+**Objeto/Tabla – Controller – Vista**
+  
+Estructura Odoo desde el punto de vista del desarrollador:
+
+#. Back-end
+	* Python
+		* Modelos: modelo normal (datos) o transiente (wizard)
+		* Controllers (informes, website)
+	* CSV (reglas de acceso a las tablas en la BBDD)
+#. Front-end (back-office y front-office)
+	* XML
+	* Qweb (estructura de la interfaz, los informes)
+	* Javascript
+	* CSS
+
+Estructura de Odoo como un conjunto de módulos:
+
+* Núcleo Odoo
+* Add-ons (propios y terceros)
+	* Aplicaciones
+	* Módulos técnicos (ampliaciones para las aplicaciones)
+
+Módulo
+------
+
+Cada módulo tiene la misma estructura básica.
+
+* Nombre, descripción, autor, licencia, etc.
+* Dependencias
+	* Módulos y aplicaciones
+	* Python packages
+* Modelos (estructura de las tablas, es decir, objeto)
+	* Campos (columnas en la tabla de BBDD)
+	* Métodos (create, write, unlink, etc.)
+	* Herencias (nuevo, heredado, nuevo en la base de heredado)
+* Vistas
+	* Vistas tree, form, kanban, calendar, pivot, etc.
+	* Acciones
+	* Menús
+* Templates
+	* Interfaz de la aplicación
+	* Front-office & website
+	* Informes
+* Data
+	* Plantillas correo
+	* Datos predeterminados
+	* Acciones cron
+	* Parámetros de sistema
+* Wizard
+	* Modelos
+	* Vistas
+* Seguridad
+	* Permisos de acceso a las tablas
+	* Reglas de registro
+* Traducciones: .po & .pot
+* Datos demo
+* Helper hooks
