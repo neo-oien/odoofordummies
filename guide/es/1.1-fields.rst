@@ -1,2 +1,106 @@
 1.1 Fields
 ==========
+
+Tipos de los campos
+-------------------
+
+#. Char (single-line string). Puede ser traducido (por defecto **translate='False'**).
+#. Boolean (por defecto **False**)
+#. Integer (por defecto **0**)
+#. Float. También se usa para tipo monetary con **widget='monetary'**. En este caso es necesario tener campo **'currency_id'** en la vista. Por defecto **0,00**.
+#. Monetary (por defecto **0**)
+#. Text (opcionalmente con **widget='html'**, en la BBDD se guardará como texto plano)
+#. Selection
+#. Html
+#. Date
+#. Datetime (opcionalmente con **widget='date'**)
+#. `Many2one, One2many, Many2many`_ – relaciones entre las tablas
+
+Ejemplo:
+
+.. image:: https://raw.githubusercontent.com/neo-oien/odoo_doc/master/guide/src/img/1-1-01.jpg
+   :alt: Ejemplo: diferentes tipos de campos
+
+Herencias
+~~~~~~~~~
+
+Al heredar un modelo también se heredan todos los campos y sus atributos.
+
+Pero después se pueden modificar. En este caso se usa el mismo sintaxis pero se mencionan solo los atributos que habrá que modificar.
+
+Campos pre-reservados
+~~~~~~~~~~~~~~~~~~~~~
+
+Cualquier modelo al crear ya tiene los siguientes campos:
+
+- id (float)
+- create_date (datetime)
+- create_uid (many2one contra 'res.users')
+- write_date (datetime)
+- write_uid (many2one contra 'res.users')
+
+Atributos
+---------
+
+- string o ' '
+- currency_field (para los de tipo 'monetary')
+- help
+- required
+- translate – si el campo puede ser traducido (aplica a los de tipo **'char, text y html'**)
+- states – solo si el módelo tiene campo **'state'**.
+- digits (se puede usar con **dp.get_precision**), en formato **digits=(16,4)**
+- default (valor fijo o con **'lambda self:'**)
+- store – por defecto **True** para los campos no calculables y no relacionados. Indica si el valor se almacena y se buede buscar por él.
+- compute – campo calculable. Por defecto se aplican **'store=False' y 'readonly=True'**. Para usar **'store=True'** habrá que establecer dependencias en el método que se usa para el cálculo (con **@api.depends**), en caso de no hacerlo el valor no se va a actualizar.
+- related – relación con campo de otro modelo con que haya una relación Many2one. Un campo relacionado debe tener el mismo tipo que en el módelo padre. Para almacenar un campo relacionado y poder usarlo para la búsqueda, habrá que establecer parámetro **'store=True'**.
+- domain – criterio para filtrar los valores disponibles
+- readonly – solo lectura (**no afecta a método 'write'**, solo interfaz)
+- copy – si el valor se copiará al duplicar el registro
+- ondelete – acción al eliminar el registro relacionado: **'set null', 'restrict', 'cascade'**
+- index – indexación en la BBDD
+
+Ejemplos
+~~~~~~~~
+
+Uso de los atributos:
+
+.. image:: https://raw.githubusercontent.com/neo-oien/odoo_doc/master/guide/src/img/1-1-02.jpg
+   :alt: Ejemplo: uso de los atributos
+
+Campos relacionados:
+
+.. image:: https://raw.githubusercontent.com/neo-oien/odoo_doc/master/guide/src/img/1-1-03.jpg
+   :alt: Ejemplo: uso de los atributos
+
+Calculo de valores para campo selectivo en vivo:
+
+.. image:: https://raw.githubusercontent.com/neo-oien/odoo_doc/master/guide/src/img/1-1-04.jpg
+   :alt: Ejemplo: calculo de valores para campo selectivo en vivo
+
+Uso de **lambda self:** para calcular un valor por defecto:
+
+.. image:: https://raw.githubusercontent.com/neo-oien/odoo_doc/master/guide/src/img/1-1-05.jpg
+   :alt: Ejemplo: uso de lambda self: para calcular un valor por defecto
+
+Campo calculable y almacenable:
+
+.. image:: https://raw.githubusercontent.com/neo-oien/odoo_doc/master/guide/src/img/1-1-06.jpg
+   :alt: Ejemplo: campo calculable y almacenable:
+
+SQL constrains
+--------------
+
+Se pueden establecer reglas de valores únicos para los campos.
+
+Se usa el siguiente formato:
+
+- id de la regla
+- campo a que se aplica la regla
+- mensaje (traducible)
+
+Many2one, One2many, Many2many
+-----------------------------
+
+Si un modelo tiene campo con relación **Many2one** contra otro modelo, se creará una relación automática **One2many** en el modelo relacionado. Y al revés.
+
+Los campos de tipo Many2one, One2many, Many2many usan los atributos comunes pero tienen unos cuantos de uso específico.
