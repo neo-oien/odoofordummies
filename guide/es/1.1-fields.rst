@@ -98,9 +98,56 @@ Se usa el siguiente formato:
 - campo a que se aplica la regla
 - mensaje (traducible)
 
+Ejemplo:
+
+.. image:: https://raw.githubusercontent.com/neo-oien/odoo_doc/master/guide/src/img/1-1-07.jpg
+   :alt: Ejemplo: SQL constrains:
+
+Se pueden combinar varios campos y varias reglas para el mismo modelo.
+
+Ejemplo con dos reglas (cada filtra por el valor de un solo campo):
+
+.. image:: https://raw.githubusercontent.com/neo-oien/odoo_doc/master/guide/src/img/1-1-08.jpg
+   :alt: Ejemplo: SQL constrains - dos reglas:
+
+Ejemplo con una solo regla que comprueba el valor único para la combinación de dos campos:
+
+.. image:: https://raw.githubusercontent.com/neo-oien/odoo_doc/master/guide/src/img/1-1-09.jpg
+   :alt: Ejemplo: SQL constrains - una regla con dos campos afectados:
+
 Many2one, One2many, Many2many
 -----------------------------
 
 Si un modelo tiene campo con relación **Many2one** contra otro modelo, se creará una relación automática **One2many** en el modelo relacionado. Y al revés.
 
 Los campos de tipo Many2one, One2many, Many2many usan los atributos comunes pero tienen unos cuantos de uso específico.
+
+Many2one:
+
+- comodel_name – nombre del modelo objetivo
+- domain
+- ondelete
+
+One2many:
+
+- comodel_name – nombre del modelo objetivo
+- inverse_name – campo para vincular (**Many2one**) en el modelo indicado en **comodel_name**
+- domain
+
+Many2many:
+
+- comodel_name – nombre del modelo objetivo
+- relation – nombre de la tabla (*opcional*)
+- column1 – nombre para el campo con relación hacia modelo **actual** (*opcional*)
+- column2 – nombre para el campo con relación hacia modelo **objetivo** (*opcional*)
+- domain
+
+Ejemplo de relación Many2one y One2many relacionados (vinculados):
+
+.. image:: https://raw.githubusercontent.com/neo-oien/odoo_doc/master/guide/src/img/1-1-10.jpg
+   :alt: Ejemplo: relación Many2one y One2man vinculados:
+
+Ejemplo del uso de campos opcionales en Many2many:
+
+.. image:: https://raw.githubusercontent.com/neo-oien/odoo_doc/master/guide/src/img/1-1-11.jpg
+   :alt: Ejemplo: campos opcionales en Many2many:
