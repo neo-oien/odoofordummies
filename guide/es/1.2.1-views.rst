@@ -1,0 +1,29 @@
+1.2.1 Views
+===========
+
+Las vistas se guardan en la tabla **ir.ui.view**. Al fin y al cabo es un modelo que se guarda en la BBDD.
+Tienen mucho en común con templates pero son dos cosas diferentes.
+
+Atributos del modelo de vistas
+------------------------------
+
+* ID – en el formato XML
+* name – campo informativo para poder diferenciar las vistas
+* model – nombre del modelo
+* mode (**'primary'** o **'extension'**), si no lleva **'inherit_id'** es de tipo 'primary' por defecto
+* arch – la estructura de la vista
+* inherit_id – ID en formato XML de la vista heredada (solo para del tipo 'extension'). Si hay que heredar una vista y hacer una nueva en base de ella, se usa el conjunto de **'inherit_id'** y **mode='primary'**.
+* priority – prioridad de la vista en comparación con otras vistas que heredan la de objetivo (*opcional*)
+* groups_id – aplicar solo para los grupos establecidos (*opcional*)
+
+Ejemplo:
+
+.. image:: https://raw.githubusercontent.com/neo-oien/odoo_doc/master/guide/src/img/1-2/1-2-01.jpg
+   :alt: Ejemplo: atributos del modelo de vistas
+
+Cada XML ID tiene dos partes: nombre técnico del módulo y ID de la propia vista, por ejemplo vista con ID 'partner_form_view' en el módulo 'custom_partner' tiene el completo XML ID **'custom_partner.partner_form_view'**.
+
+En modo de desarrollador (debug) se puede acceder a todos los datos y IDs de la vista actual:
+
+.. image:: https://raw.githubusercontent.com/neo-oien/odoo_doc/master/guide/src/img/1-2/1-2-02.jpg
+   :alt: Ejemplo: datos de vista en debug
